@@ -13,5 +13,11 @@ export const ProductsTable = () => {
     fillRows(callEndpoint, setRows);
   }, []);
 
-  return <Table columns={useMemo(() => getColumns(), [])} rows={rows} />;
+  return (
+    <Table
+      columns={useMemo(() => getColumns(), [])}
+      rows={rows}
+      watchCardRoute={"/products/"}
+    />
+  );
 };
