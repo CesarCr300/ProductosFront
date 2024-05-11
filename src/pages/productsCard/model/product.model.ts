@@ -1,4 +1,4 @@
-export interface IProductResponseDto {
+export interface ProductModel {
   id: number;
   handle: string;
   title: string;
