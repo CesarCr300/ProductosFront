@@ -4,7 +4,7 @@ import { Table } from "../../../components/table/Table";
 import useFetchAndLoad from "../../../hooks/useFetchAndLoad";
 import { ProductsContext } from "../context/ProductsContext";
 import { getColumns } from "../products.columns";
-import { fillRows } from "../application/products.application";
+import { fillRows, removeById } from "../application/products.application";
 
 export const ProductsTable = () => {
   const { setLoading } = useContext(ProductsContext);
@@ -20,6 +20,8 @@ export const ProductsTable = () => {
       columns={useMemo(() => getColumns(), [])}
       rows={rows}
       watchCardRoute={"/products/"}
+      remove={removeById}
+      removeParams={{ callEndpoint }}
     />
   );
 };
