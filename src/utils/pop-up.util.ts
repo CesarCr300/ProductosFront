@@ -16,6 +16,20 @@ export const createPopUpWithIcon = (
   });
 };
 
+export const createPopUpWithTimer = async (
+  title: string,
+  text: string,
+  icon: SweetAlertIcon,
+  timeInMs: number
+) => {
+  await Swal.fire({
+    title,
+    text,
+    icon,
+    timer: timeInMs,
+  });
+};
+
 export const createPopUpQuestion = async (
   title: string,
   icon: SweetAlertIcon = "warning"
