@@ -11,10 +11,7 @@ export const getColumns = (): GridColDef[] => {
       field: "actions",
       headerName: "Acciones",
       flex: 1,
-      renderCell: (params: any) => {
-        console.log(params);
-        return params.id;
-      },
+      renderCell: (params: any) => <p>Id: {params.id}</p>,
     },
   ];
 };
