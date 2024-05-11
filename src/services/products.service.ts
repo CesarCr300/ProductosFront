@@ -4,7 +4,7 @@ import { IProductResponseDto } from "../dtos/products/product-response.dto";
 import { IProductUpdateDto } from "../dtos/products/product-update.dto";
 import { BaseRestService } from "./base.service";
 
-export class ProductService extends BaseRestService<
+class ProductService extends BaseRestService<
   IProductResponseDto,
   IProductResponseManyDto,
   IProductCreateDto,
@@ -14,3 +14,5 @@ export class ProductService extends BaseRestService<
     super("/products");
   }
 }
+
+export const productService = new ProductService();
