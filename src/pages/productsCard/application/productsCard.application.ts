@@ -23,5 +23,7 @@ export const update = async (
   );
   if (!continueWithOperation) return;
 
-  await callEndpoint(productService.update(id, product));
+  const service = productService.update(id, product);
+  
+  await callEndpoint(service);
 };

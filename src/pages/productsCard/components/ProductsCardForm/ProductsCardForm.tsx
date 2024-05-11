@@ -3,15 +3,16 @@ import { useForm } from "react-hook-form";
 import { FormContainer } from "../../../../components/Form/FormContainer";
 import { ProductUpdate } from "../../model/product-update.model";
 import { useParams } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useContext, useMemo } from "react";
 import useFetchAndLoad from "../../../../hooks/useFetchAndLoad";
 import { update } from "../../application/productsCard.application";
 import { productsCardFormFields } from "./productsCardForm.fields";
 import { useProductModelState } from "../../hooks/useProductModelState";
+import { ProductsCardContext } from "../../context/ProductsCard.context";
 
 export const ProductsCardForm = () => {
   const { id } = useParams();
-  const [loading, setLoading] = useState(false);
+  const { setLoading } = useContext(ProductsCardContext);
   const { callEndpoint } = useFetchAndLoad(setLoading);
   const { product } = useProductModelState(id, callEndpoint);
   const { register, handleSubmit } = useForm<ProductUpdate>();
