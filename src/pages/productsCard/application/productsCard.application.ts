@@ -1,4 +1,5 @@
 import { productService } from "../../../services/products.service";
+import { createPopUpQuestion } from "../../../utils/pop-up.util";
 import { fromProductResponseToProductModelAdapter } from "../adapters/from-product-response-to-product-model.adapter";
 import { ProductUpdate } from "../model/product-update.model";
 import { ProductModel } from "../model/product.model";
@@ -17,5 +18,10 @@ export const update = async (
   product: ProductUpdate,
   callEndpoint: any
 ) => {
+  const continueWithOperation = await createPopUpQuestion(
+    "¿Estas seguro de actualizar el producto?"
+  );
+  if (!continueWithOperation) return;
+
   await callEndpoint(productService.update(id, product));
 };
