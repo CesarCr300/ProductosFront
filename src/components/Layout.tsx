@@ -11,7 +11,8 @@ export const Layout = () => {
         <Sidebar />
         <Container
           sx={{
-            margin: "0px",
+            // margin: "0px",
+            marginTop: "20px",
             padding: {
               ms: "0px",
               xs: "0px 10px",
