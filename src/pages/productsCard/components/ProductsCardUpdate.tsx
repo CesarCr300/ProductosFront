@@ -13,7 +13,12 @@ export const ProductsCardUpdate = () => {
   const { callEndpoint } = useFetchAndLoad(setLoading);
   const { product } = useProductModelState(id, callEndpoint);
   const onSubmit = (data: any) => {
-    update(id as unknown as number, data, callEndpoint);
+    try {
+      update(id as unknown as number, data, callEndpoint);
+    } catch (error) {
+      //logger
+      console.log(error);
+    }
   };
 
   if (product == null) return <h1>El producto no existe</h1>;
