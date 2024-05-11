@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Link } from "react-router-dom";
+
+import { TableActions } from "./TableActions";
 
 interface ITable {
   columns: GridColDef[];
@@ -34,32 +32,15 @@ export const Table = ({
     };
     actions.renderCell = (params) => {
       return (
-        <div style={{ display: "flex", gap: "8px" }}>
-          {watchCardRoute && (
-            <Link
-              style={{ color: "black" }}
-              to={
-                (watchCardRoute?.endsWith("/")
-                  ? watchCardRoute
-                  : watchCardRoute + "/") + params.id
-              }
-            >
-              <VisibilityIcon></VisibilityIcon>
-            </Link>
-          )}
-          {update && (
-            <>
-              <EditIcon
-                onClick={() => update(params.id as number, updateParams)}
-              />
-            </>
-          )}
-          {remove && (
-            <DeleteIcon
-              onClick={() => remove(params.id as number, removeParams)}
-            ></DeleteIcon>
-          )}
-        </div>
+        <TableActions
+          params={params}
+          key={params.id}
+          remove={remove}
+          removeParams={removeParams}
+          update={update}
+          updateParams={updateParams}
+          watchCardRoute={watchCardRoute}
+        />
       );
     };
     setColumns([...columns, actions]);
