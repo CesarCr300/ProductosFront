@@ -1,4 +1,4 @@
-export interface IProductCreateDto {
+export interface ProductCreate {
   handle: string;
   title: string;
   description: string;
