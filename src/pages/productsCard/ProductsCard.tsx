@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Loading } from "../../components/Loading";
 import { ProductsCardContext } from "./context/ProductsCard.context";
 import { ProductsCardUpdate } from "./components/ProductsCardUpdate";
-import { ProductsHeader } from "./components/ProductsHeader";
+import { ProductsCardHeader } from "./components/ProductsCardHeader";
 import Container from "@mui/material/Container";
 
 export const ProductsCard = () => {
@@ -12,7 +12,7 @@ export const ProductsCard = () => {
     <ProductsCardContext.Provider value={{ loading, setLoading }}>
       {loading && <Loading />}
       <Container>
-        <ProductsHeader />
+        <ProductsCardHeader />
         <ProductsCardUpdate />
       </Container>
     </ProductsCardContext.Provider>
