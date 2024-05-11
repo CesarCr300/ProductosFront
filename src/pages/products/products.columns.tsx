@@ -1,4 +1,5 @@
 import { GridColDef } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
 
 export const getColumns = (): GridColDef[] => {
   return [
@@ -11,7 +12,9 @@ export const getColumns = (): GridColDef[] => {
       field: "actions",
       headerName: "Acciones",
       flex: 1,
-      renderCell: (params: any) => <p>Id: {params.id}</p>,
+      renderCell: (params: any) => (
+        <Link to={`/products/${params.id}`}>Ver</Link>
+      ),
     },
   ];
 };
