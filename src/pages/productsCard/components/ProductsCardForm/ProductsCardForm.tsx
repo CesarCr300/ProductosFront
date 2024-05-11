@@ -6,7 +6,7 @@ import { ProductModel } from "../../model/product.model";
 import { useParams } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import useFetchAndLoad from "../../../../hooks/useFetchAndLoad";
-import { getById } from "../../application/productsCard.application";
+import { getById, update } from "../../application/productsCard.application";
 import { productsCardFormFields } from "./productsCardForm.fields";
 
 export const ProductsCardForm = () => {
@@ -14,11 +14,17 @@ export const ProductsCardForm = () => {
   const [product, setProduct] = useState<ProductModel | null>(null);
   const [loading, setLoading] = useState(false);
   const { callEndpoint } = useFetchAndLoad(setLoading);
-  const { register } = useForm<ProductUpdate>();
+  const { register, handleSubmit } = useForm<ProductUpdate>();
+
+  const onSubmit = (data: any) => {
+    update(id as unknown as number, data, callEndpoint);
+  };
+
   const fields = useMemo(
     () => productsCardFormFields(register, product),
     [product]
   );
+
   useEffect(() => {
     try {
       if (!id || isNaN(+id)) return;
@@ -30,5 +36,9 @@ export const ProductsCardForm = () => {
 
   if (product == null) return <></>;
 
-  return <FormContainer fields={fields} onSubmit={() => {}} />;
+  return (
+    <FormContainer fields={fields} onSubmit={handleSubmit(onSubmit)}>
+      <button type="submit">Guardar</button>
+    </FormContainer>
+  );
 };
