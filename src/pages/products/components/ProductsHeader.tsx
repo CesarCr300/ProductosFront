@@ -13,7 +13,7 @@ export const ProductsHeader = () => {
       }}
     >
       <div>
-        <h1>Productos</h1>
+        <h1 style={{ margin: "0px" }}>Productos</h1>
       </div>
       <div>
         <Button
