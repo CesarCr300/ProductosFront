@@ -11,6 +11,7 @@ export interface IFormInput {
   defaultValue?: string | number;
   hasAsyncronousDefaultValue?: boolean;
   error?: FieldError;
+  disabled?: boolean;
 }
 
 export const FormField = ({
@@ -23,10 +24,12 @@ export const FormField = ({
   hasAsyncronousDefaultValue = true,
   registerOptions = {},
   error,
+  disabled = false,
 }: IFormInput) => {
   return (
     <FormControl key={name + label}>
       <TextField
+        disabled={disabled}
         label={label}
         {...register(name, {
           valueAsNumber: type == "number",
