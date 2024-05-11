@@ -15,6 +15,7 @@ const useFetchAndLoad = (setLoading: (value: boolean) => void) => {
       setLoading(false);
       throw err;
     }
+
     setLoading(false);
     return result;
   };
