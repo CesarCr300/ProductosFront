@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { ProductsCardForm } from "../../../components/Products/ProductsCardForm/ProductsCardForm";
 import useFetchAndLoad from "../../../hooks/useFetchAndLoad";
 import { create } from "../application/productsCreation.application";
-import { useNavigate } from "react-router-dom";
+import { ProductsCreationContext } from "../context/ProductsCreationContext";
 
 export const ProductsCreationForm = () => {
-  const [loading, setLoading] = useState(false);
+  const { setLoading } = useContext(ProductsCreationContext);
   const { callEndpoint } = useFetchAndLoad(setLoading);
   const navigate = useNavigate();
 
   const onSubmit = (data: any) => {
-    create(data, callEndpoint, navigate);
+    try {
+      create(data, callEndpoint, navigate);
+    } catch (error) {
+      //logger
+      console.log(error);
+    }
   };
   useNavigate();
   return (
