@@ -1,4 +1,4 @@
-export interface IProductUpdateDto {
+export interface ProductUpdate {
   description: string;
   stock: number;
   weightInGrams: number;
