@@ -14,6 +14,7 @@ export const productsCardFormFields = (
       register,
       hasAsyncronousDefaultValue: false,
       defaultValue: product.title,
+      disabled: true,
     },
     {
       label: "Handle",
@@ -22,6 +23,7 @@ export const productsCardFormFields = (
       register,
       hasAsyncronousDefaultValue: false,
       defaultValue: product.handle,
+      disabled: true,
     },
     {
       label: "Descripción",
@@ -70,6 +72,7 @@ export const productsCardFormFields = (
       register,
       hasAsyncronousDefaultValue: false,
       defaultValue: product.sku,
+      disabled: true,
     },
     {
       label: "Código de barras",
@@ -78,6 +81,7 @@ export const productsCardFormFields = (
       register,
       hasAsyncronousDefaultValue: false,
       defaultValue: product.barcode,
+      disabled: true,
     },
   ];
 };
