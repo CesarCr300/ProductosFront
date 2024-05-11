@@ -5,6 +5,7 @@ import { FormContainer } from "../../Form/FormContainer";
 import { ProductUpdate } from "../../../pages/productsCard/model/product-update.model";
 import { ProductModel } from "../../../pages/productsCard/model/product.model";
 import { productsCardFormFields } from "./productsCardForm.fields";
+import { Button } from "../../Button";
 
 interface IProductsCardForm {
   product: ProductModel | null;
@@ -24,7 +25,7 @@ export const ProductsCardForm = ({
 
   return (
     <FormContainer fields={fields} onSubmit={handleSubmit(onSubmit)}>
-      <button type="submit">Guardar</button>
+      <Button text={product == null ? "Crear" : "Guardar"} type="submit" />
     </FormContainer>
   );
 };
