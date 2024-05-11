@@ -1,5 +1,8 @@
 import { productService } from "../../../services/products.service";
-import { createPopUpQuestion } from "../../../utils/pop-up.util";
+import {
+  createPopUpQuestion,
+  createPopUpWithIcon,
+} from "../../../utils/pop-up.util";
 import { fromProductResponseToProductModelAdapter } from "../adapters/from-product-response-to-product-model.adapter";
 import { ProductUpdate } from "../model/product-update.model";
 import { ProductModel } from "../model/product.model";
@@ -24,6 +27,12 @@ export const update = async (
   if (!continueWithOperation) return;
 
   const service = productService.update(id, product);
-  
+
   await callEndpoint(service);
+
+  createPopUpWithIcon(
+    "Producto actualizado",
+    "El producto ha sido actualizado",
+    "success"
+  );
 };
