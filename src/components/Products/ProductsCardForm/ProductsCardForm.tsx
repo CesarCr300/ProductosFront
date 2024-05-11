@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useMemo } from "react";
 
-import { FormContainer } from "../../../../components/Form/FormContainer";
-import { ProductUpdate } from "../../model/product-update.model";
-import { ProductModel } from "../../model/product.model";
+import { FormContainer } from "../../Form/FormContainer";
+import { ProductUpdate } from "../../../pages/productsCard/model/product-update.model";
+import { ProductModel } from "../../../pages/productsCard/model/product.model";
 import { productsCardFormFields } from "./productsCardForm.fields";
 
 interface IProductsCardForm {

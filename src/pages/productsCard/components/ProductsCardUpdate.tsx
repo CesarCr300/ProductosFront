@@ -5,7 +5,7 @@ import useFetchAndLoad from "../../../hooks/useFetchAndLoad";
 import { update } from "../application/productsCard.application";
 import { ProductsCardContext } from "../context/ProductsCard.context";
 import { useProductModelState } from "../hooks/useProductModelState";
-import { ProductsCardForm } from "./ProductsCardForm/ProductsCardForm";
+import { ProductsCardForm } from "../../../components/Products/ProductsCardForm/ProductsCardForm";
 
 export const ProductsCardUpdate = () => {
   const { id } = useParams();
