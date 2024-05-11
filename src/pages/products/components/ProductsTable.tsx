@@ -1,12 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
+
 import { Table } from "../../../components/table/Table";
+import useFetchAndLoad from "../../../hooks/useFetchAndLoad";
+import { ProductsContext } from "../context/ProductsContext";
 import { getColumns } from "../products.columns";
 import { fillRows } from "../application/products.application";
-import useFetchAndLoad from "../../../hooks/useFetchAndLoad";
 
 export const ProductsTable = () => {
+  const { setLoading } = useContext(ProductsContext);
   const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { callEndpoint } = useFetchAndLoad(setLoading);
 
   useEffect(() => {
