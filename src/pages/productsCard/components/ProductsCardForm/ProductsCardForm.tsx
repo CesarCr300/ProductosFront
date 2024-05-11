@@ -1,32 +1,26 @@
 import { useForm } from "react-hook-form";
+import { useMemo } from "react";
 
 import { FormContainer } from "../../../../components/Form/FormContainer";
 import { ProductUpdate } from "../../model/product-update.model";
-import { useParams } from "react-router-dom";
-import { useContext, useMemo } from "react";
-import useFetchAndLoad from "../../../../hooks/useFetchAndLoad";
-import { update } from "../../application/productsCard.application";
+import { ProductModel } from "../../model/product.model";
 import { productsCardFormFields } from "./productsCardForm.fields";
-import { useProductModelState } from "../../hooks/useProductModelState";
-import { ProductsCardContext } from "../../context/ProductsCard.context";
 
-export const ProductsCardForm = () => {
-  const { id } = useParams();
-  const { setLoading } = useContext(ProductsCardContext);
-  const { callEndpoint } = useFetchAndLoad(setLoading);
-  const { product } = useProductModelState(id, callEndpoint);
+interface IProductsCardForm {
+  product: ProductModel | null;
+  onSubmit: (data: any) => Promise<void> | void;
+}
+
+export const ProductsCardForm = ({
+  product = null,
+  onSubmit,
+}: IProductsCardForm) => {
   const { register, handleSubmit } = useForm<ProductUpdate>();
-
-  const onSubmit = (data: any) => {
-    update(id as unknown as number, data, callEndpoint);
-  };
 
   const fields = useMemo(
     () => productsCardFormFields(register, product),
     [product]
   );
-
-  if (product == null) return <></>;
 
   return (
     <FormContainer fields={fields} onSubmit={handleSubmit(onSubmit)}>
