@@ -5,16 +5,15 @@ export const productsCardFormFields = (
   register: any,
   product: ProductModel | null
 ): IFormFieldRender[] => {
-  if (product == null) return [];
-  return [
+  const respuesta: IFormFieldRender[] = [
     {
       label: "Título",
       name: "title",
       type: "text",
       register,
       hasAsyncronousDefaultValue: false,
-      defaultValue: product.title,
-      disabled: true,
+      disabled: product != null,
+      defaultValue: product?.title,
     },
     {
       label: "Handle",
@@ -22,8 +21,8 @@ export const productsCardFormFields = (
       type: "text",
       register,
       hasAsyncronousDefaultValue: false,
-      defaultValue: product.handle,
-      disabled: true,
+      disabled: product != null,
+      defaultValue: product?.handle,
     },
     {
       label: "Descripción",
@@ -31,39 +30,39 @@ export const productsCardFormFields = (
       type: "text",
       register,
       hasAsyncronousDefaultValue: false,
-      defaultValue: product.description,
+      defaultValue: product?.description,
     },
     {
       label: "Stock",
       name: "stock",
       type: "number",
       register,
-      defaultValue: product.stock,
       hasAsyncronousDefaultValue: false,
+      defaultValue: product?.stock,
     },
     {
       label: "Peso en gramos",
       name: "weightInGrams",
       type: "number",
       register,
-      defaultValue: product.weightInGrams,
       hasAsyncronousDefaultValue: false,
+      defaultValue: product?.weightInGrams,
     },
     {
       label: "Precio",
       name: "price",
       type: "number",
       register,
-      defaultValue: product.price,
       hasAsyncronousDefaultValue: false,
+      defaultValue: product?.price,
     },
     {
       label: "Precio de comparación",
       name: "comparePrice",
       type: "number",
       register,
-      defaultValue: product.comparePrice,
       hasAsyncronousDefaultValue: false,
+      defaultValue: product?.comparePrice,
     },
     {
       label: "SKU",
@@ -71,8 +70,8 @@ export const productsCardFormFields = (
       type: "text",
       register,
       hasAsyncronousDefaultValue: false,
-      defaultValue: product.sku,
-      disabled: true,
+      defaultValue: product?.sku,
+      disabled: product != null,
     },
     {
       label: "Código de barras",
@@ -80,8 +79,9 @@ export const productsCardFormFields = (
       type: "text",
       register,
       hasAsyncronousDefaultValue: false,
-      defaultValue: product.barcode,
-      disabled: true,
+      defaultValue: product?.barcode,
+      disabled: product != null,
     },
   ];
+  return respuesta;
 };
