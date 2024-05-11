@@ -11,7 +11,10 @@ export const fillRows = async (callEndpoint: any, setRows: any) => {
 
 export const removeById = async (
   id: number,
-  { callEndpoint }: { callEndpoint: any }
+  {
+    callEndpoint,
+    functionToDeleteFromTable,
+  }: { callEndpoint: any; functionToDeleteFromTable: () => void }
 ) => {
   const continueWithRemove = await createPopUpQuestion(
     "¿Estás seguro de eliminar este producto?"
@@ -19,4 +22,5 @@ export const removeById = async (
   if (!continueWithRemove) return;
   await callEndpoint(productService.remove(id));
   createPopUpSimple("Producto eliminado con éxito");
+  functionToDeleteFromTable();
 };
