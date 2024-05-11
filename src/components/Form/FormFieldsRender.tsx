@@ -23,6 +23,7 @@ export interface IFormFieldRender {
   hasAsyncronousDefaultValue?: boolean;
   registerOptions?: RegisterOptions;
   errors?: FieldErrors;
+  disabled?: boolean;
 }
 
 export const FormFieldsRender = ({
@@ -38,6 +39,7 @@ export const FormFieldsRender = ({
   hasAsyncronousDefaultValue = true,
   errors,
   registerOptions,
+  disabled = false,
 }: IFormFieldRender) => {
   switch (inputType) {
     case "select":
@@ -65,6 +67,7 @@ export const FormFieldsRender = ({
           type={type}
           error={errors ? (errors[name] as FieldError) : undefined}
           registerOptions={registerOptions}
+          disabled={disabled}
         />
       );
     default:
