@@ -1,5 +1,5 @@
-import { IFormFieldRender } from "../../../../components/Form/FormFieldsRender";
-import { ProductModel } from "../../model/product.model";
+import { IFormFieldRender } from "../../Form/FormFieldsRender";
+import { ProductModel } from "../../../pages/productsCard/model/product.model";
 
 export const productsCardFormFields = (
   register: any,
