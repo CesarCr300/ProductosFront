@@ -10,6 +10,11 @@ export const SidebarLinks = () => {
             <CustomeLink to="/products" text="Productos" />
           </ListItemText>
         </ListItemButton>
+        <ListItemButton sx={{ padding: 0 }} key="Starred">
+          <ListItemText>
+            <CustomeLink to="/users/update" text="Actualizar usuario" />
+          </ListItemText>
+        </ListItemButton>
       </List>
     </div>
   );

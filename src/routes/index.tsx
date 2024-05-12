@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout";
 import { Products } from "../pages/products/Products";
 import { ProductsCard } from "../pages/productsCard/ProductsCard";
 import { ProductsCreation } from "../pages/productsCreation/ProductsCreation";
+import { UserUpdate } from "../pages/userUpdate/UserUpdate";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
         path: "/products/:id",
         element: <ProductsCard />,
       },
+      { path: "/users/update", element: <UserUpdate /> },
     ],
   },
 ]);
