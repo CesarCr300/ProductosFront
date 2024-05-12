@@ -3,9 +3,5 @@ import { useUserSelector } from "../../redux/user.hooks";
 
 export const SidebarUser = () => {
   const user = useUserSelector((state) => state.user.user);
-  return (
-    <Typography>
-      {user?.name} {user?.lastName}
-    </Typography>
-  );
+  return <Typography>{user?.username}</Typography>;
 };

@@ -9,5 +9,6 @@ export const createLoginResponseToUserAdapter = (
     name: response.name,
     lastName: response.lastName,
     token: response.access_token,
+    username: response.username,
   };
 };
