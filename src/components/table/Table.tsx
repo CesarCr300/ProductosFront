@@ -25,6 +25,7 @@ export const Table = ({
   const [columnsState, setColumns] = useState(columns);
   useEffect(() => {
     if (!update && !remove && !watchCardRoute) return;
+    const isMobileSize = window.innerWidth <= 760;
     const actions: GridColDef = {
       field: "actions",
       headerName: "Acciones",
@@ -43,10 +44,20 @@ export const Table = ({
         />
       );
     };
-    setColumns([...columns, actions]);
+    // Add actions column to the beginning if mobile size, otherwise add it to the end
+    if (isMobileSize) {
+      setColumns([actions, ...columns]);
+    } else {
+      setColumns([...columns, actions]);
+    }
   }, []);
 
   return (
-    <DataGrid columns={columnsState} rows={rows} sx={{ overflowX: "scroll" }} />
+    <DataGrid
+      columns={columnsState}
+      rows={rows}
+      sx={{ overflowX: "scroll" }}
+      disableColumnMenu={true}
+    />
   );
 };
