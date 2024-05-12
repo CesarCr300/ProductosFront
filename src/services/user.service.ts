@@ -10,7 +10,7 @@ class UserService {
     const controller = abortController();
     return {
       call: this._axiosInstance.patch<IUserUpdateDto>(
-        this.resourceUrl + "/update-password",
+        this.resourceUrl + "update-password",
         body,
         {
           signal: controller.signal,
