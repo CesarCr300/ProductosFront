@@ -7,7 +7,7 @@ export interface IFormInput {
   register: any;
   registerOptions?: RegisterOptions;
   size?: string;
-  type?: "text" | "number";
+  type?: "text" | "number" | "password";
   defaultValue?: string | number;
   hasAsyncronousDefaultValue?: boolean;
   error?: FieldError;

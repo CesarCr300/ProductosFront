@@ -5,14 +5,14 @@ export const userUpdateFormFields = (register: any): IFormFieldRender[] => {
     {
       label: "Antigua contraseña",
       name: "originalPassword",
-      type: "text",
+      type: "password",
       register,
       hasAsyncronousDefaultValue: false,
     },
     {
       label: "Nueva contraseña",
       name: "newPassword",
-      type: "text",
+      type: "password",
       register,
       hasAsyncronousDefaultValue: false,
     },

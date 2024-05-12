@@ -14,7 +14,7 @@ export interface IFormFieldRender {
   name: string;
   label: string;
   size?: string;
-  type?: "text" | "number";
+  type?: "text" | "number" | "password";
   inputType?: "input" | "select";
   defaultValue?: string | number;
   register: UseFormRegister<any>;
