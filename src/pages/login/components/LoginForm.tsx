@@ -48,7 +48,7 @@ export const LoginForm = () => {
           <FormControl>
             <TextField
               id="email"
-              label="Correo electrónico"
+              label="Correo electrónico o usuario"
               {...register("email")}
               size="small"
             />
