@@ -30,6 +30,7 @@ export const Table = ({
       field: "actions",
       headerName: "Acciones",
       flex: 1,
+      minWidth: 100,
     };
     actions.renderCell = (params) => {
       return (
@@ -56,7 +57,10 @@ export const Table = ({
     <DataGrid
       columns={columnsState}
       rows={rows}
-      sx={{ overflowX: "scroll" }}
+      sx={{
+        overflowX: "scroll",
+        "& .MuiDataGrid-columnSeparator": { display: "none" },
+      }}
       disableColumnMenu={true}
     />
   );
