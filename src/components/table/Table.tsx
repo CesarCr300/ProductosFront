@@ -60,6 +60,10 @@ export const Table = ({
 
   return (
     <DataGrid
+      pageSizeOptions={[5, 10, 20, 50, 100]}
+      initialState={{
+        pagination: { paginationModel: { pageSize: 10 } },
+      }}
       columns={columnsState}
       rows={rows}
       sx={{
