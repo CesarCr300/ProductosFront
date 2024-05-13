@@ -15,7 +15,6 @@ export const ProductsCreationForm = () => {
     try {
       create(data, callEndpoint, navigate);
     } catch (error) {
-      //logger
       console.log(error);
     }
   };
