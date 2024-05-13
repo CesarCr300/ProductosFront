@@ -7,12 +7,14 @@ import { ProductsCard } from "../pages/productsCard/ProductsCard";
 import { ProductsCreation } from "../pages/productsCreation/ProductsCreation";
 import { UserUpdate } from "../pages/userUpdate/UserUpdate";
 import { UserRecoverPassword } from "../pages/userRecoverPassword/UserRecoverPassword";
+import { UserForgotPassword } from "../pages/userForgotPassword/UserForgotPassword";
 
 export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
   },
+  { path: "/users/forgot-password", element: <UserForgotPassword /> },
   { path: "/users/recover-password", element: <UserRecoverPassword /> },
   {
     path: "/",
