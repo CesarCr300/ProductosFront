@@ -20,9 +20,15 @@ export const ProductsCardForm = ({
   product = null,
   onSubmit,
 }: IProductsCardForm) => {
-  const { register, handleSubmit, watch, setValue, getValues } = useForm<
-    ProductUpdate | ProductCreate
-  >();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    getValues,
+    formState: { errors },
+    reset,
+  } = useForm<ProductUpdate | ProductCreate>();
   const [description, setDescription] = useState(EditorState.createEmpty());
 
   const fields = useMemo(
@@ -43,6 +49,7 @@ export const ProductsCardForm = ({
       setValue("handle", " ");
       return;
     }
+    reset();
     setDescription(
       EditorState.createWithContent(
         ContentState.createFromBlockArray(
@@ -60,7 +67,7 @@ export const ProductsCardForm = ({
   }, [watch("title")]);
 
   return (
-    <FormContainer fields={fields} onSubmit={handleOnSubmit}>
+    <FormContainer fields={fields} onSubmit={handleOnSubmit} errors={errors}>
       <h4 style={{ margin: 0 }}>Descripción</h4>
       <RichTextEditor value={description} setValue={setDescription} />
       <Button text={product == null ? "Crear" : "Guardar"} type="submit" />
