@@ -8,6 +8,7 @@ import { FormContainer } from "../../../components/Form/FormContainer";
 import { recoverPassword } from "../application/userRecoverPassword";
 import { UserRecoverPasswordModel } from "../models/user-recover-password.model";
 import { userRecoverPasswordFields } from "../userRecoverPassword.fields";
+import { Box, Typography } from "@mui/material";
 
 export const UserRecoverPasswordForm = () => {
   const [searchParams] = useSearchParams();
@@ -35,12 +36,31 @@ export const UserRecoverPasswordForm = () => {
   };
 
   return (
-    <FormContainer
-      fields={useMemo(() => userRecoverPasswordFields(register, watch), [])}
-      onSubmit={handleSubmit(onSubmit)}
-      errors={errors}
+    <Box
+      display="flex"
+      flexDirection="column"
+      minWidth="300px"
+      sx={{
+        borderRadius: "8px",
+        padding: "40px 20px",
+        backgroundColor: "white",
+      }}
+      boxShadow={10}
     >
-      <Button text="Guardar" type="submit" />
-    </FormContainer>
+      <Typography
+        component="h1"
+        textAlign={"left"}
+        sx={{ fontWeight: "bold", fontSize: "20px" }}
+      >
+        Restablecer contraseña
+      </Typography>
+      <FormContainer
+        fields={useMemo(() => userRecoverPasswordFields(register, watch), [])}
+        onSubmit={handleSubmit(onSubmit)}
+        errors={errors}
+      >
+        <Button text="Guardar" type="submit" />
+      </FormContainer>
+    </Box>
   );
 };
