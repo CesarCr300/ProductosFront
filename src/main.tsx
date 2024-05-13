@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
+  //React strictmode was desactivated because it was causing some issues with draft-js library
   // <React.StrictMode>
   <Provider store={store}>
     <RouterProvider router={router} />
