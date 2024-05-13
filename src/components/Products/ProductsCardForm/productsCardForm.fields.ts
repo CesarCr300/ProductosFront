@@ -24,14 +24,14 @@ export const productsCardFormFields = (
       disabled: product != null,
       defaultValue: product?.handle,
     },
-    {
-      label: "Descripción",
-      name: "description",
-      type: "text",
-      register,
-      hasAsyncronousDefaultValue: false,
-      defaultValue: product?.description,
-    },
+    // {
+    //   label: "Descripción",
+    //   name: "description",
+    //   type: "text",
+    //   register,
+    //   hasAsyncronousDefaultValue: false,
+    //   defaultValue: product?.description,
+    // },
     {
       label: "Stock",
       name: "stock",

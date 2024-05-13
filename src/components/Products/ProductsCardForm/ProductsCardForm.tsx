@@ -1,12 +1,19 @@
 import { useForm } from "react-hook-form";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  ContentState,
+  EditorState,
+  convertFromHTML,
+  convertToRaw,
+} from "draft-js";
 
 import { FormContainer } from "../../Form/FormContainer";
 import { ProductUpdate } from "../../../pages/productsCard/model/product-update.model";
 import { ProductModel } from "../../../pages/productsCard/model/product.model";
-import { productsCardFormFields } from "./productsCardForm.fields";
 import { Button } from "../../Button";
 import { RichTextEditor } from "../../RichtText";
+import { productsCardFormFields } from "./productsCardForm.fields";
+import { stateToHTML } from "draft-js-export-html";
 
 interface IProductsCardForm {
   product: ProductModel | null;
@@ -18,15 +25,36 @@ export const ProductsCardForm = ({
   onSubmit,
 }: IProductsCardForm) => {
   const { register, handleSubmit } = useForm<ProductUpdate>();
+  const [description, setDescription] = useState(EditorState.createEmpty());
+
+  useEffect(() => {
+    if (product == null) return;
+    setDescription(
+      EditorState.createWithContent(
+        ContentState.createFromBlockArray(
+          convertFromHTML(product.description).contentBlocks
+        )
+      )
+    );
+  }, [product]);
 
   const fields = useMemo(
     () => productsCardFormFields(register, product),
     [product]
   );
 
+  const handleOnSubmit = (e: any) => {
+    e.preventDefault();
+    const descriptionInText = stateToHTML(description.getCurrentContent());
+    handleSubmit((data) => {
+      onSubmit({ ...data, description: descriptionInText });
+    })();
+  };
+
   return (
-    <FormContainer fields={fields} onSubmit={handleSubmit(onSubmit)}>
-      <RichTextEditor content={product?.description} />
+    <FormContainer fields={fields} onSubmit={handleOnSubmit}>
+      <h4 style={{ margin: 0 }}>Descripción</h4>
+      <RichTextEditor value={description} setValue={setDescription} />
       <Button text={product == null ? "Crear" : "Guardar"} type="submit" />
     </FormContainer>
   );

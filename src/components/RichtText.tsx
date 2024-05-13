@@ -1,23 +1,13 @@
-import { EditorState, convertFromHTML, ContentState } from "draft-js";
+import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useState } from "react";
 
 interface IRichTextEditor {
-  content?: string;
+  value: EditorState;
+  setValue: React.Dispatch<React.SetStateAction<EditorState>>;
 }
 
-export const RichTextEditor = ({ content }: IRichTextEditor) => {
-  const [state, setState] = useState(
-    content == undefined
-      ? EditorState.createEmpty()
-      : EditorState.createWithContent(
-          ContentState.createFromBlockArray(
-            convertFromHTML(content).contentBlocks
-          )
-        )
-  );
-
+export const RichTextEditor = ({ value, setValue }: IRichTextEditor) => {
   return (
     <Editor
       toolbar={{
@@ -31,8 +21,8 @@ export const RichTextEditor = ({ content }: IRichTextEditor) => {
           "history",
         ],
       }}
-      editorState={state}
-      onEditorStateChange={setState}
+      editorState={value}
+      onEditorStateChange={setValue}
     />
   );
 };
