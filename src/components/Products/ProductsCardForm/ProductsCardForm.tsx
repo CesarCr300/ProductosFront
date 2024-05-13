@@ -20,19 +20,10 @@ export const ProductsCardForm = ({
   product = null,
   onSubmit,
 }: IProductsCardForm) => {
-  const { register, handleSubmit } = useForm<ProductUpdate | ProductCreate>();
+  const { register, handleSubmit, watch, setValue, getValues } = useForm<
+    ProductUpdate | ProductCreate
+  >();
   const [description, setDescription] = useState(EditorState.createEmpty());
-
-  useEffect(() => {
-    if (product == null) return;
-    setDescription(
-      EditorState.createWithContent(
-        ContentState.createFromBlockArray(
-          convertFromHTML(product.description).contentBlocks
-        )
-      )
-    );
-  }, [product]);
 
   const fields = useMemo(
     () => productsCardFormFields(register, product),
@@ -46,6 +37,27 @@ export const ProductsCardForm = ({
       onSubmit({ ...data, description: descriptionInText });
     })();
   };
+
+  useEffect(() => {
+    if (product == null) {
+      setValue("handle", " ");
+      return;
+    }
+    setDescription(
+      EditorState.createWithContent(
+        ContentState.createFromBlockArray(
+          convertFromHTML(product.description).contentBlocks
+        )
+      )
+    );
+  }, [product]);
+
+  useEffect(() => {
+    let title = getValues("title");
+    if (!title || product) return;
+    title = title.toLocaleLowerCase().replace(/ /g, "-");
+    setValue("handle", title);
+  }, [watch("title")]);
 
   return (
     <FormContainer fields={fields} onSubmit={handleOnSubmit}>
