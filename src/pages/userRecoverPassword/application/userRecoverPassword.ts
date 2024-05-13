@@ -1,7 +1,7 @@
 import { NavigateFunction } from "react-router-dom";
 import { fromUserRecoverPasswordModelToDtoAdapter } from "../adapters/from-user-recover-password-model-to-user-recover-password-dto.adapter";
 import { UserRecoverPasswordModel } from "../models/user-recover-password.model";
-import { userRecoverPasswordService } from "../services/userRecoverPassword";
+import { userRecoverPasswordService } from "../services/userRecoverPassword.service";
 import { defaultUnauthenticatedUserRoute } from "../../../variables/routes.variables";
 import { createPopUpWithTimer } from "../../../utils/pop-up.util";
 
@@ -15,7 +15,7 @@ export const recoverPassword = async (
     token,
     fromUserRecoverPasswordModelToDtoAdapter(data)
   );
-  const response = await callEndpoint(service);
+  await callEndpoint(service);
   await createPopUpWithTimer(
     "Contraseña actualizada correctamente",
     "",
