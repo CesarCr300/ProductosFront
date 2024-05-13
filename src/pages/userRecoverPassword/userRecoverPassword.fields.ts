@@ -6,14 +6,14 @@ export const userRecoverPasswordFields = (
   const respuesta: IFormFieldRender[] = [
     {
       label: "Contraseña",
-      name: "originalPassword",
+      name: "password",
       type: "password",
       register,
       hasAsyncronousDefaultValue: false,
     },
     {
       label: "Confirmar contraseña",
-      name: "newPassword",
+      name: "confirmPassword",
       type: "password",
       register,
       hasAsyncronousDefaultValue: false,
