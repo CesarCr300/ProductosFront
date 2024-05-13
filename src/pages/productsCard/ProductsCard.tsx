@@ -6,7 +6,7 @@ import { ProductsCardUpdate } from "./components/ProductsCardUpdate";
 import { ProductsCardHeader } from "./components/ProductsCardHeader";
 import Container from "@mui/material/Container";
 
-export const ProductsCard = () => {
+const ProductsCard = () => {
   const [loading, setLoading] = useState(false);
   return (
     <ProductsCardContext.Provider value={{ loading, setLoading }}>
@@ -18,3 +18,5 @@ export const ProductsCard = () => {
     </ProductsCardContext.Provider>
   );
 };
+
+export default ProductsCard;
