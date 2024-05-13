@@ -28,6 +28,11 @@ export const productsCardFormFields = (
       defaultValue: product?.handle,
       registerOptions: {
         required: product == null && "El handle es requerido",
+        validate: (val: string) => {
+          if (product == null && val.includes(" ")) {
+            return "El handle no puede contener espacios";
+          }
+        },
       },
     },
     {

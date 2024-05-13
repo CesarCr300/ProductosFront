@@ -28,7 +28,7 @@ export const ProductsCardForm = ({
     getValues,
     formState: { errors },
     reset,
-  } = useForm<ProductUpdate | ProductCreate>();
+  } = useForm<ProductUpdate | ProductCreate>({ mode: "onChange" });
   const [description, setDescription] = useState(EditorState.createEmpty());
 
   const fields = useMemo(
