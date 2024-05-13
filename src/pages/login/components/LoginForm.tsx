@@ -33,7 +33,7 @@ export const LoginForm = () => {
     <Box
       display="flex"
       flexDirection="column"
-      minWidth="350px"
+      minWidth="300px"
       sx={{
         borderRadius: "8px",
         padding: "40px 20px",
