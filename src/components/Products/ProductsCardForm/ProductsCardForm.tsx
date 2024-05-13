@@ -1,19 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useMemo, useState } from "react";
-import {
-  ContentState,
-  EditorState,
-  convertFromHTML,
-  convertToRaw,
-} from "draft-js";
+import { ContentState, EditorState, convertFromHTML } from "draft-js";
 
+import { stateToHTML } from "draft-js-export-html";
 import { FormContainer } from "../../Form/FormContainer";
 import { ProductUpdate } from "../../../pages/productsCard/model/product-update.model";
 import { ProductModel } from "../../../pages/productsCard/model/product.model";
 import { Button } from "../../Button";
 import { RichTextEditor } from "../../RichtText";
 import { productsCardFormFields } from "./productsCardForm.fields";
-import { stateToHTML } from "draft-js-export-html";
+import { ProductCreate } from "../../../pages/productsCreation/models/product-create.model";
 
 interface IProductsCardForm {
   product: ProductModel | null;
@@ -24,7 +20,7 @@ export const ProductsCardForm = ({
   product = null,
   onSubmit,
 }: IProductsCardForm) => {
-  const { register, handleSubmit } = useForm<ProductUpdate>();
+  const { register, handleSubmit } = useForm<ProductUpdate | ProductCreate>();
   const [description, setDescription] = useState(EditorState.createEmpty());
 
   useEffect(() => {
