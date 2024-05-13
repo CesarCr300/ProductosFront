@@ -8,6 +8,7 @@ import { userForgotPasswordFields } from "../userForgotPassword.fields";
 import { UserForgotPasswordModel } from "../model/user-forgot-password.model";
 import { sendLinkToResetPassword } from "../application/userForgotPassword.application";
 import { Box, Typography } from "@mui/material";
+import { GoBack } from "../../../components/GoBack";
 
 export const UserForgotPasswordForm = () => {
   const [, setLoading] = useState(false);
@@ -30,11 +31,13 @@ export const UserForgotPasswordForm = () => {
       }}
       boxShadow={10}
     >
+      <div className="" style={{ marginBottom: "5px" }}>
+        <GoBack to="/login" />
+      </div>
       <Typography
         component="h1"
-        variant="caption"
         textAlign={"left"}
-        sx={{ fontWeight: "bold" }}
+        sx={{ fontWeight: "bold", fontSize: "20px" }}
       >
         Olvide mi contraseña
       </Typography>

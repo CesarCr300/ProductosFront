@@ -4,9 +4,10 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 interface IGoBack {
   to: string;
+  fontSize?: string;
 }
 
-export const GoBack = ({ to }: IGoBack) => {
+export const GoBack = ({ to, fontSize = "20px" }: IGoBack) => {
   return (
     <Link
       to={to}
@@ -18,7 +19,7 @@ export const GoBack = ({ to }: IGoBack) => {
       }}
     >
       <ArrowBackIcon />
-      <Typography sx={{ fontSize: "20px" }}>Volver</Typography>
+      <Typography sx={{ fontSize }}>Volver</Typography>
     </Link>
   );
 };
