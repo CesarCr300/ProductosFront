@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 
 import { UserForgotPasswordForm } from "./components/UserForgotPasswordForm";
+import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
 
 export const UserForgotPassword = () => {
+  useIsAuthenticated();
   return (
     <Box
       display="flex"

@@ -1,23 +1,15 @@
+import { useState } from "react";
 import { Box } from "@mui/material";
 
+import { Loading } from "../../components/Loading";
+import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
 import { LoginForm } from "./components/LoginForm";
 import { LoginContext } from "./context/login.context";
-import { useEffect, useState } from "react";
-import { Loading } from "../../components/Loading";
-import { useUserSelector } from "../../redux/user.hooks";
-import { useNavigate } from "react-router-dom";
-import { defaultAuthenticatedUserRoute } from "../../variables/routes.variables";
 
 export const Login = () => {
-  const navigate = useNavigate();
-  const state = useUserSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (state.isAuthenticated) {
-      return navigate(defaultAuthenticatedUserRoute);
-    }
-  }, [state]);
+  useIsAuthenticated();
 
   return (
     <LoginContext.Provider value={{ loading, setLoading }}>
