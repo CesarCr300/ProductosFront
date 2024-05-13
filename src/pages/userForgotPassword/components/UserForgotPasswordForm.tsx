@@ -7,6 +7,7 @@ import useFetchAndLoad from "../../../hooks/useFetchAndLoad";
 import { userForgotPasswordFields } from "../userForgotPassword.fields";
 import { UserForgotPasswordModel } from "../model/user-forgot-password.model";
 import { sendLinkToResetPassword } from "../application/userForgotPassword.application";
+import { Box, Typography } from "@mui/material";
 
 export const UserForgotPasswordForm = () => {
   const [, setLoading] = useState(false);
@@ -18,11 +19,31 @@ export const UserForgotPasswordForm = () => {
   };
 
   return (
-    <FormContainer
-      fields={useMemo(() => userForgotPasswordFields(register), [])}
-      onSubmit={handleSubmit(onSubmit)}
+    <Box
+      display="flex"
+      flexDirection="column"
+      minWidth="300px"
+      sx={{
+        borderRadius: "8px",
+        padding: "40px 20px",
+        backgroundColor: "white",
+      }}
+      boxShadow={10}
     >
-      <Button text="Enviar" type="submit" />
-    </FormContainer>
+      <Typography
+        component="h1"
+        variant="caption"
+        textAlign={"left"}
+        sx={{ fontWeight: "bold" }}
+      >
+        Olvide mi contraseña
+      </Typography>
+      <FormContainer
+        fields={useMemo(() => userForgotPasswordFields(register), [])}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Button text="Enviar correo de recuperación" type="submit" />
+      </FormContainer>
+    </Box>
   );
 };
