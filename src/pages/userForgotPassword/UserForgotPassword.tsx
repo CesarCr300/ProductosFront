@@ -1,5 +1,11 @@
-import React from "react";
+import { Container } from "@mui/material";
+
+import { UserForgotPasswordForm } from "./components/UserForgotPasswordForm";
 
 export const UserForgotPassword = () => {
-  return <div>UserForgotPassword</div>;
+  return (
+    <Container>
+      <UserForgotPasswordForm />
+    </Container>
+  );
 };
