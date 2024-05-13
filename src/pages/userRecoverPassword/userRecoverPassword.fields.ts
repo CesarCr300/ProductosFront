@@ -1,7 +1,11 @@
+import { UseFormWatch } from "react-hook-form";
+
 import { IFormFieldRender } from "../../components/Form/FormFieldsRender";
+import { UserRecoverPasswordModel } from "./models/user-recover-password.model";
 
 export const userRecoverPasswordFields = (
-  register: any
+  register: any,
+  watch: UseFormWatch<UserRecoverPasswordModel>
 ): IFormFieldRender[] => {
   const respuesta: IFormFieldRender[] = [
     {
@@ -17,6 +21,13 @@ export const userRecoverPasswordFields = (
       type: "password",
       register,
       hasAsyncronousDefaultValue: false,
+      registerOptions: {
+        validate: (val: string) => {
+          if (watch("password") != val) {
+            return "Las contraseñas deben de coincidir";
+          }
+        },
+      },
     },
   ];
   return respuesta;

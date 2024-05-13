@@ -14,7 +14,12 @@ export const UserRecoverPasswordForm = () => {
   const [, setLoading] = useState(false);
   const navigate = useNavigate();
   const { callEndpoint } = useFetchAndLoad(setLoading);
-  const { handleSubmit, register } = useForm<UserRecoverPasswordModel>();
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors },
+  } = useForm<UserRecoverPasswordModel>({ mode: "onChange" });
 
   const onSubmit = (data: UserRecoverPasswordModel) => {
     try {
@@ -31,8 +36,9 @@ export const UserRecoverPasswordForm = () => {
 
   return (
     <FormContainer
-      fields={useMemo(() => userRecoverPasswordFields(register), [])}
+      fields={useMemo(() => userRecoverPasswordFields(register, watch), [])}
       onSubmit={handleSubmit(onSubmit)}
+      errors={errors}
     >
       <Button text="Guardar" type="submit" />
     </FormContainer>
