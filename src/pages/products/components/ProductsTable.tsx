@@ -21,7 +21,7 @@ export const ProductsTable = () => {
       rows={rows}
       watchCardRoute={"/products/"}
       remove={removeById}
-      removeParams={{ callEndpoint }}
+      removeParams={{ callEndpoint, setRows }}
     />
   );
 };
