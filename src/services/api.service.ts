@@ -1,6 +1,7 @@
 import axios, { AxiosHeaders, AxiosInstance } from "axios";
 import { createPopUpWithIcon } from "../utils/pop-up.util";
 import { createAuthString } from "../utils/auth.util";
+import { apiVariables } from "../variables/api.variables";
 
 export class AxiosInstanceSingletone {
   private static axiosInstance: AxiosInstance;
@@ -18,7 +19,7 @@ export class AxiosInstanceSingletone {
         headers.Authorization = createAuthString(token);
       }
       AxiosInstanceSingletone.axiosInstance = axios.create({
-        baseURL: "http://localhost:3000/",
+        baseURL: apiVariables.domain,
         headers,
       });
       AxiosInstanceSingletone.axiosInstance.interceptors.response.use(
