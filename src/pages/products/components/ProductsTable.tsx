@@ -23,6 +23,7 @@ export const ProductsTable = () => {
       watchCardRoute={"/products/"}
       remove={removeById}
       removeParams={{ callEndpoint, setRows }}
+      searchBar={{ rows: rows, setRows, paramToSearch: "title" }}
     />
   );
 };
