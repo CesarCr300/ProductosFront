@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import { TableActions } from "./TableActions";
+import { ITableSearchBar, TableSearchBar } from "./TableSearchBar";
 
 interface ITable {
   columns: GridColDef[];
@@ -11,6 +12,7 @@ interface ITable {
   updateParams?: any;
   removeParams?: any;
   watchCardRoute?: string;
+  searchBar?: ITableSearchBar;
 }
 
 export const Table = ({
@@ -21,6 +23,7 @@ export const Table = ({
   updateParams = {},
   removeParams = {},
   watchCardRoute = undefined,
+  searchBar = undefined,
 }: ITable) => {
   const [columnsState, setColumns] = useState(columns);
   //This state is used to store the original width of the columns, to be able to reset them and only mantain one column with a bigger width in mobile devices
@@ -59,34 +62,37 @@ export const Table = ({
   }, []);
 
   return (
-    <DataGrid
-      pageSizeOptions={[5, 10, 20, 50, 100]}
-      initialState={{
-        pagination: { paginationModel: { pageSize: 10 } },
-      }}
-      columns={columnsState}
-      rows={rows}
-      sx={{
-        overflowX: "scroll",
-        "& .MuiDataGrid-columnSeparator": { display: "none" },
-      }}
-      disableColumnMenu={true}
-      //This functionality allow to expand the width of the cell when clicked
-      onCellClick={(params) => {
-        const isMobileSize = window.innerWidth <= 760;
-        if (!isMobileSize || params.field.includes("actions")) return;
+    <>
+      {searchBar && <TableSearchBar {...searchBar} />}
+      <DataGrid
+        pageSizeOptions={[5, 10, 20, 50, 100]}
+        initialState={{
+          pagination: { paginationModel: { pageSize: 10 } },
+        }}
+        columns={columnsState}
+        rows={rows}
+        sx={{
+          overflowX: "scroll",
+          "& .MuiDataGrid-columnSeparator": { display: "none" },
+        }}
+        disableColumnMenu={true}
+        //This functionality allow to expand the width of the cell when clicked
+        onCellClick={(params) => {
+          const isMobileSize = window.innerWidth <= 760;
+          if (!isMobileSize || params.field.includes("actions")) return;
 
-        //To don't work over the original columns
-        const columnsArray = [...columnsWithNormalWidth];
+          //To don't work over the original columns
+          const columnsArray = [...columnsWithNormalWidth];
 
-        const columnToModifyWidth = columnsArray.find((column) => {
-          return column.field === params.field;
-        });
-        if (!columnToModifyWidth) return;
+          const columnToModifyWidth = columnsArray.find((column) => {
+            return column.field === params.field;
+          });
+          if (!columnToModifyWidth) return;
 
-        columnToModifyWidth.minWidth = 300;
-        setColumns([...columnsArray]);
-      }}
-    />
+          columnToModifyWidth.minWidth = 300;
+          setColumns([...columnsArray]);
+        }}
+      />
+    </>
   );
 };
