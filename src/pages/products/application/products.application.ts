@@ -3,10 +3,11 @@ import {
   createPopUpQuestion,
   createPopUpSimple,
 } from "../../../utils/pop-up.util";
+import { fromProductTableDtosToModels } from "../adapters/from-product-table-dto-to-model.adapter";
 
 export const fillRows = async (callEndpoint: any, setRows: any) => {
   const response = await callEndpoint(productService.getAll());
-  setRows(response.data);
+  setRows(fromProductTableDtosToModels(response.data));
 };
 
 export const removeById = async (
